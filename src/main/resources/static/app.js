@@ -27,7 +27,6 @@ var app = (function () {
         };
     };
 
-
     var connectAndSubscribe = function () {
         console.info('Connecting to WS...');
         var socket = new SockJS('/stompendpoint');
@@ -39,12 +38,11 @@ var app = (function () {
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
                 alert(eventbody);
                 var theObject = JSON.parse(eventbody.body)
+                addPointToCanvas(theObject);
             });
         });
 
     };
-    
-
 
     return {
 
