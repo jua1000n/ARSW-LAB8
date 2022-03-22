@@ -44,7 +44,7 @@ var app = (function () {
 
     };
     
-    
+
 
     return {
 
@@ -61,6 +61,7 @@ var app = (function () {
             addPointToCanvas(pt);
 
             //publicar el evento
+            stompClient.send("/topic/newpoint", {}, JSON.stringify(pt));
         },
 
         disconnect: function () {
