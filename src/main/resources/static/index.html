@@ -30,9 +30,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     
     <body onload="app.init()">
-        X:<input id="x" type="number"/>
-        Y:<input id="y" type="number"/>        
-        <button onclick="app.publishPoint($('#x').val(),$('#y').val())">Send point</button>
-        <canvas id="canvas" width="800" height="600"></canvas>
+        <div>
+            X:<input id="x" type="number"/>
+            Y:<input id="y" type="number"/>
+            <button onclick="app.publishPoint($('#x').val(),$('#y').val())">Send point</button>campo en la vista
+            Numero de Canvas:<input id="num" type="number"/>
+            <button onclick="app.connectionButton($('#num').val())">Connection</button>
+        </div>
+        <div>
+            <canvas id="canvas" width="800" height="600" style="border: 1px solid #d9d9d9;"></canvas>
+        </div>
     </body>
 </html>
