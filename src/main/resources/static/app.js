@@ -29,6 +29,19 @@ var app = (function () {
         };
     };
 
+    function addPolygonCanvas(points) {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        console.log(points[0].x, points[0].y);
+        ctx.moveTo(points[0].x, points[0].y);
+        points.forEach(function (point) {
+            ctx.arc(point.x, point.y, 3, 0, 2 * Math.PI);
+            ctx.lineTo(point.x, point.y);
+        })
+        ctx.lineTo(points[0].x, points[0].y);
+        ctx.stroke();
+    }
+
     var connectAndSubscribe = function (name) {
         nameTo = name;
         console.info('Connecting to WS...');
@@ -42,6 +55,11 @@ var app = (function () {
                 alert(eventbody);
                 var theObject = JSON.parse(eventbody.body)
                 addPointToCanvas(theObject);
+            });
+
+            stompClient.subscribe('/topic/newpolygon.'+nameTo.toString(), function (eventbody) {
+                var theObject = JSON.parse(eventbody.body)
+                addPolygonCanvas(theObject);
             });
         });
 
